@@ -53,12 +53,12 @@ resource "aws_instance" "instance" {
   instance_type     = var.instance_type
   region            = var.region
   availability_zone = var.zone
-#  subnet_id         = aws_network_interface.network_interface.subnet_id
-#  associate_public_ip_address = false
+  subnet_id         = aws_network_interface.network_interface.subnet_id
+  associate_public_ip_address = false
 
-  primary_network_interface {
-    network_interface_id = aws_network_interface.network_interface.id
-  }
+  # primary_network_interface {
+  #   network_interface_id = aws_network_interface.network_interface.id
+  # }
 
   root_block_device {
     delete_on_termination = true
@@ -72,6 +72,4 @@ resource "aws_instance" "instance" {
     managed-by = "terraform"
     env        = var.env
   }
-
-  depends_on = [ aws_network_interface.network_interface ]
 }
