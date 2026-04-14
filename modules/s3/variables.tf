@@ -15,3 +15,8 @@ variable "versioning" {
   type = string
   default = "Disabled"
 }
+
+variable "regional_s3_bucket_namespace" {
+  type = bool
+  default = false
+}

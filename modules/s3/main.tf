@@ -1,7 +1,7 @@
 resource "aws_s3_bucket" "s3_bucket" {
   region           = var.region
   bucket           = var.bucket_name
-  bucket_namespace = "account-regional"
+  bucket_namespace = var.regional_s3_bucket_namespace ? "account-regional" : "global"
 
   tags = {
     Name       = var.bucket_name

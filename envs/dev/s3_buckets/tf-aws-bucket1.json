@@ -2,5 +2,6 @@
     "bucket_name": "tf-aws-bucket1",
     "region": "eu-south-1",
     "env": "dev",
+    "regional_s3_bucket_namespace": true,
     "versioning": "Disabled"
 }

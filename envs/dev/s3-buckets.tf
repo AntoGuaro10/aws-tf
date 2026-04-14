@@ -9,8 +9,9 @@ module "s3-buckets" {
   source = "../../modules/s3"
   for_each = local.s3_buckets
 
-  bucket_name = each.value.bucket_name
-  region = each.value.region
-  env = each.value.env
-  versioning = each.value.versioning
+  bucket_name                  = each.value.bucket_name
+  region                       = each.value.region
+  env                          = each.value.env
+  regional_s3_bucket_namespace = each.value.regional_s3_bucket_namespace
+  versioning                   = each.value.versioning
 }
