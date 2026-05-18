@@ -1,4 +1,4 @@
-## Private repo for AWS module
+## Git repo for AWS modules
 ---
 
 Git repo created to move first steps into AWS Terraform modules.
