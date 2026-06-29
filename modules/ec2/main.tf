@@ -4,7 +4,7 @@ locals {
     "${var.region}b" = data.aws_subnet.eu_south_1b_subnet.id
     "${var.region}c" = data.aws_subnet.eu_south_1c_subnet.id
   }
-  ami_id = var.ami == "amazon-linux" ? "ami-00dee3e3d54d2189c" : var.ami == "ubuntu" ? "ami-0bb2baa8dc6c0689c" : ""
+  ami_id = var.ami == "amazon-linux" ? "ami-00dee3e3d54d2189c" : var.ami == "ubuntu" ? "ami-0bb2baa8dc6c0689c" : var.ami == "rocky-linux" ? "ami-084dcba306d924b73" : var.ami
 }
 
 
