@@ -33,3 +33,7 @@ variable "ssh_cidr_blocks" {
   type    = list(string)
   default = ["0.0.0.0/0"]
 }
+
+variable "public_key" {
+  type = string
+}

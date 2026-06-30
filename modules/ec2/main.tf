@@ -74,6 +74,11 @@ resource "aws_security_group" "ssh" {
   }
 }
 
+resource "aws_key_pair" "key_pair" {
+  key_name   = "ssh-key-pair"
+  public_key = var.public_key
+}
+
 resource "aws_instance" "instance" {
   ami                         = local.ami_id
   instance_type               = var.instance_type
@@ -82,6 +87,8 @@ resource "aws_instance" "instance" {
   subnet_id                   = aws_network_interface.network_interface.subnet_id
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.ssh.id]
+
+  key_name = aws_key_pair.key_pair.key_name
 
   # primary_network_interface {
   #   network_interface_id = aws_network_interface.network_interface.id
