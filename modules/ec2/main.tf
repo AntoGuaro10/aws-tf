@@ -48,13 +48,40 @@ resource "aws_network_interface" "network_interface" {
 #   device_index         = 0
 # }
 
+resource "aws_security_group" "ssh" {
+  name        = "ssh-access-sg"
+  description = "Allow SSH access to ec2 instances"
+  vpc_id      = data.aws_vpc.default_vpc.id
+
+  ingress {
+    description = "SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = var.ssh_cidr_blocks
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    managed-by = "terraform"
+    env        = var.env
+  }
+}
+
 resource "aws_instance" "instance" {
-  ami               = local.ami_id
-  instance_type     = var.instance_type
-  region            = var.region
-  availability_zone = var.zone
-  subnet_id         = aws_network_interface.network_interface.subnet_id
-  associate_public_ip_address = false
+  ami                         = local.ami_id
+  instance_type               = var.instance_type
+  region                      = var.region
+  availability_zone           = var.zone
+  subnet_id                   = aws_network_interface.network_interface.subnet_id
+  associate_public_ip_address = true
+  vpc_security_group_ids      = [aws_security_group.ssh.id]
 
   # primary_network_interface {
   #   network_interface_id = aws_network_interface.network_interface.id

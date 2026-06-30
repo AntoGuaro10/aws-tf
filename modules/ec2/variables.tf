@@ -28,3 +28,8 @@ variable "os_size_gb" {
 variable "env" {
   type = string
 }
+
+variable "ssh_cidr_blocks" {
+  type    = list(string)
+  default = ["0.0.0.0/0"]
+}
