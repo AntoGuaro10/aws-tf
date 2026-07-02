@@ -52,7 +52,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_tcp_ipv4" {
   security_group_id = aws_security_group.tcp.id
   from_port         = 0
   ip_protocol       = "tcp"
-  to_port           = 0
+  to_port           = 65535
   cidr_ipv4         = var.ssh_cidr_blocks[0]
 }
 
