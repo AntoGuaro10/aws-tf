@@ -53,7 +53,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_tcp_ipv4" {
   from_port         = 0
   ip_protocol       = "tcp"
   to_port           = 0
-  cidr_ipv4         = [var.ssh_cidr_blocks]
+  cidr_ipv4         = var.ssh_cidr_blocks[0]
 }
 
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
@@ -61,7 +61,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
-  cidr_ipv4         = [var.ssh_cidr_blocks]
+  cidr_ipv4         = var.ssh_cidr_blocks[0]
 }
 
 resource "aws_security_group" "tcp" {
